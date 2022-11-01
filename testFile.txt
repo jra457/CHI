@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-ag
-lnkm
-lnln
-lnlnln
-
-=======
-Testing
->>>>>>> 3a86a5713dcc9abd42e7d5f75ccda684e5c4a952
