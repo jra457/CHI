@@ -42,7 +42,3 @@ Applications:
 ○ packagesPerHour
 ○ DEX
 ○ volumeAvailabilityStatus
-
-    
-      <!-- <p><strong>Package Statistics:</strong> {{ facility.pph.all|join:", " }}</p> -->
-      <a href="{{ packagesPerHour.get_absolute_url }}">{{ packagesPerHour.pph }}</a>
