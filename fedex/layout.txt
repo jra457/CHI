@@ -1,0 +1,48 @@
+Project Structure:
+fedex/
+    manage.py
+    fedex/
+    operationsMetrics/
+        admin.py
+        apps.py
+        models.py
+        tests.py
+        views.py
+        __init__.py
+        migrations/
+
+
+
+Structure Details:
+○ fedex/ # Website folder
+
+    ○ manage.py          # Script to run Django tools for this project (created using django-admin)
+
+    ○ fedex/             # Website/project folder (created using django-admin)
+
+    ○ operationsMetrics/ # Application folder (created using manage.py)
+
+        ○ __init__.py # Empty file that instructs Python to treat this directory as a Python package.
+
+        ○ settings.py # Contains all the website settings, including registering any applications we create,
+                        the location of our static files, database configuration details, etc.
+
+        ○ urls.py     # Defines the site URL-to-view mappings. While this could contain all the URL mapping code,
+                        it is more common to delegate some of the mappings to particular applications, as you'll see later.
+
+        ○ wsgi.py     # Used to help your Django application communicate with the webserver. You can treat this as boilerplate.
+
+        ○ asgi.py     # Standard for Python asynchronous web apps and servers to communicate with each other.
+                        ASGI is the asynchronous successor to WSGI and provides a standard for both asynchronous and synchronous
+                        Python apps (whereas WSGI provided a standard for synchronous apps only). It is backward-compatible with 
+                        WSGI and supports multiple servers and application frameworks.
+
+Applications:
+○ operationsMetrics (home)
+○ packagesPerHour
+○ DEX
+○ volumeAvailabilityStatus
+
+    
+      <!-- <p><strong>Package Statistics:</strong> {{ facility.pph.all|join:", " }}</p> -->
+      <a href="{{ packagesPerHour.get_absolute_url }}">{{ packagesPerHour.pph }}</a>

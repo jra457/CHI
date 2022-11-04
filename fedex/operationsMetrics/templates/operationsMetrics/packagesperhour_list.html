@@ -1,0 +1,20 @@
+{% extends "default.html" %}
+
+{% block content %}
+    <h1>Packages Per Hour List</h1>
+
+    {% if packagesperhour_list %}
+    <ul>
+
+      {% for pph in packagesperhour_list %}
+      <li>
+        <a href="{{ pph.get_absolute_url }}">{{ pph.date }}</a> ({{pph.facility}})
+      </li>
+      {% endfor %}
+
+    </ul>
+
+    {% else %}
+      <p>There are no statistics in the database.</p>
+    {% endif %}       
+{% endblock %}

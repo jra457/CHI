@@ -1,0 +1,5 @@
+book -> packagesPerHour
+author -> facility
+
+book_detail.html -> packagesPerHour_detail.html
+author_detail.html -> facility_detail.html

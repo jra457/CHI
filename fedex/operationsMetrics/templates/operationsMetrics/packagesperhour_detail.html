@@ -1,0 +1,11 @@
+{% extends "default.html" %}
+
+{% block content %}
+<h1>Packages Per Hour:</h1>
+
+<p><strong>Facility:</strong> <a href="{{ packagesperhour.facility.get_absolute_url }}">{{ packagesperhour.facility }}</a></p>
+<p><strong>PPH:</strong> {{ packagesperhour.pph }}</p>
+<p><strong>Date:</strong> {{ packagesperhour.date }}</p> 
+
+</div>
+{% endblock %}

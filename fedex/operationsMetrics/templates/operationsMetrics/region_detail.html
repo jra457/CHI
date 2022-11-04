@@ -1,0 +1,9 @@
+{% extends "default.html" %}
+
+{% block content %}
+  <h1>Region: {{ region.name }}</h1>
+
+  <p><strong>Facilities:</strong> {{ region.facility.all|join:", " }}</p>
+
+  </div>
+{% endblock %}
