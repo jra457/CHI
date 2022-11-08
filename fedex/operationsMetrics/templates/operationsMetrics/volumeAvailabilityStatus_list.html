@@ -1,0 +1,14 @@
+{% extends "default.html" %}
+
+{% block content %}
+    <h1>Volume Availability Status List:</h1>
+
+    {% if volumeAvailabilityStatus_list %}
+    <ul>
+
+    </ul>
+
+    {% else %}
+      <p>There are no statistics in the database.</p>
+    {% endif %}       
+{% endblock %}

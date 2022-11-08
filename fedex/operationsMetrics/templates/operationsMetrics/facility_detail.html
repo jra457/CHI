@@ -1,0 +1,22 @@
+{% extends "default.html" %}
+
+{% block content %}
+
+    <h1>Facility: {{ facility.name }}</h1>
+
+    {% if facility.packagesperhour_set.all %}
+    <ul>
+
+      <h4>Packages Per Hour:</h4>
+      {% for package in facility.packagesperhour_set.all %}
+      <li>
+        <a href="{{ package.get_absolute_url }}">{{ package.date }}</a> ({{package.pph}})
+      </li>
+      {% endfor %}
+
+    </ul>
+
+    {% else %}
+      <p>There are no package stats for this facility.</p>
+    {% endif %}
+{% endblock %}
