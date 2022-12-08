@@ -1,0 +1,157 @@
+{% extends 'opMetrics/base.html' %}
+
+{% block content %}
+{% load static %}
+<link href="{% static 'css/dropdowns.css' %}" rel="stylesheet" >
+<div class="container-fluid">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="arrow-left-short" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+    </symbol>
+
+    <symbol id="arrow-right-short" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+    </symbol>
+  </svg>
+
+  <div class="page-header">
+  <h1>Packages Per Hour</h1>
+  </div>
+  <h4>Level:</h4>
+  <div class="btn-group gap-2">
+    <button type="button" class="btn btn-secondary dropdown-toggle rounded" data-bs-toggle="dropdown" aria-expanded="false">
+      Level
+    </button>
+    <ul class="dropdown-menu rounded">
+      <li><a class="dropdown-item" href="/packagesPerHour/company/{{ sDatePPH }}/{{ eDatePPH }}">Company</a></li>
+      <li><a class="dropdown-item" href="/packagesPerHour/division/{{ sDatePPH }}/{{ eDatePPH }}">Division</a></li>
+      <li><a class="dropdown-item" href="/packagesPerHour/region/{{ sDatePPH }}/{{ eDatePPH }}">Region</a></li>
+      <li><a class="dropdown-item" href="/packagesPerHour/district/{{ sDatePPH }}/{{ eDatePPH }}">District</a></li>
+      <li><a class="dropdown-item" href="/packagesPerHour/location/{{ sDatePPH }}/{{ eDatePPH }}">Location</a></li>
+    </ul>
+    <button type="button" class="btn btn-secondary dropdown-toggle rounded" data-bs-toggle="dropdown" aria-expanded="false">
+      Option
+    </button>
+    <ul class="dropdown-menu rounded">
+      <li><a class="dropdown-item" href="/packagesPerHour/location/all/{{ sDatePPH }}/{{ eDatePPH }}">All</a></li>
+      {% for option in level2List %}
+      <li><a class="dropdown-item" href="/packagesPerHour/{{ level1 }}/{{ option }}/{{ sDatePPH }}/{{ eDatePPH }}">{{ option }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <h4>Date Range:</h4>
+  <form class="btn-group gap-2" role="search" action="/packagesPerHour/{{ level1 }}/{{ level2 }}/{{ sDatePPH }}/{{ eDatePPH }}/" method="post">
+    {% csrf_token %}
+    <div class="input-group input-group mb-3" style="width: 250px;">
+      <div class="input-group-prepend">
+        <span class="input-group-text text-center" id="eDatePPHLabel">Start Date:</span>
+      </div>
+      <input class="form-control" name="sDatePPH" type="date" value="{{ sDatePPH }}" placeholder="{{ sDatePPH }}">
+    </div>
+
+    <div class="input-group input-group mb-3" style="width: 250px;">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="eDatePPHLabel">End Date:</span>
+      </div>
+      <input class="form-control" name="eDatePPH" type="date" value="{{ eDatePPH }}" placeholder="{{ eDatePPH }}">
+    </div>
+
+    <button class="btn btn-primary rounded btn-sm mb-3" style="width: 100px;" type="submit">Submit</button>
+
+  </form>
+
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Row #</th>
+        <th scope="col">UUID</th>
+        <th scope="col">Division</th>
+        <th scope="col">Region</th>
+        <th scope="col">District</th>
+        <th scope="col">Location</th>
+        <th scope="col">MM/DD/YY</th>
+        <th scope="col">Status</th>
+        <th scope="col">Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <script>var startCount = 1;</script>
+      {% if dataRange %}
+        {% for pph in page_obj %}
+        <tr>
+          <th name="{{ test }}" scope="row"><script>document.write(startCount); startCount = startCount + 1;</script></th>
+          <td>123456</td>
+          <td><a href="{{ pph.location.district.region.division.get_absolute_url }}">{{ pph.location.district.region.division }}</a></td>
+          <td><a href="{{ pph.location.district.region.get_absolute_url }}">{{ pph.location.district.region }}</a></td>
+          <td><a href="{{ pph.location.district.get_absolute_url }}">{{ pph.location.district }}</a></td>
+          <td><a href="{{ pph.location.get_absolute_url }}">{{ pph.location }}</a></td>
+          <td>{{ pph.date }}</td>
+          <td>Delivered</td>
+          <td>Actual</td>
+        </tr>
+        {% endfor %}
+      {% else %}
+        <p>There are no statistics in the database.</p>
+      {% endif %}    
+    </tbody>
+  </table>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="/packagesPerHour/{{ level1 }}/{{ level2 }}/{{ sDatePPH }}/{{ eDatePPH }}/?page={{ page_obj.previous_page_number }}">&laquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link">&laquo;</a>
+      </li>
+      {% endif %}
+
+      {% if page_obj.has_previous and page_obj.previous_page_number != 1 %}
+      <li class="page-item">
+        <a class="page-link" href="/packagesPerHour/{{ level1 }}/{{ level2 }}/{{ sDatePPH }}/{{ eDatePPH }}/?page=1">1</a>
+      </li>
+      {% endif %}
+
+      {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="/packagesPerHour/{{ level1 }}/{{ level2 }}/{{ sDatePPH }}/{{ eDatePPH }}/?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+      {% endif %}
+
+      {% if page_obj.has_next or page_obj.has_previous %}
+      <li class="page-item disabled"><a class="page-link">{{ page_obj.number }}</a></li>
+      {% endif %}
+
+      {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="/packagesPerHour/{{ level1 }}/{{ level2 }}/{{ sDatePPH }}/{{ eDatePPH }}/?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+      {% endif %}
+
+      {% if page_obj.has_next and page_obj.next_page_number != page_obj.paginator.num_pages %}
+      <li class="page-item">
+        <a class="page-link" href="/packagesPerHour/{{ level1 }}/{{ level2 }}/{{ sDatePPH }}/{{ eDatePPH }}/?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+      </li>
+      {% endif %}
+
+      {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="/packagesPerHour/{{ level1 }}/{{ level2 }}/{{ sDatePPH }}/{{ eDatePPH }}/?page={{ page_obj.next_page_number }}">&raquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link">&raquo;</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+
+<script>
+  function rowNum(row_number) {
+    return row_number + 1;
+  }
+
+</script>
+
+{% endblock %}

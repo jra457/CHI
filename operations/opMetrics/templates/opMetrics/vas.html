@@ -1,0 +1,94 @@
+{% extends 'opMetrics/base.html' %}
+
+{% block content %}
+
+    <center>
+        <h1>Volume Availability Status</h1>
+    </center>
+    <h4>Level:</h4>
+<div class="btn-group gap-2">
+  <button type="button" class="btn btn-secondary dropdown-toggle rounded" data-bs-toggle="dropdown" aria-expanded="false">
+    Level
+  </button>
+  <ul class="dropdown-menu rounded">
+    <li><a class="dropdown-item" href="/packagesPerHour/company/{{ sDatePPH }}/{{ eDatePPH }}">Company</a></li>
+    <li><a class="dropdown-item" href="/packagesPerHour/division/{{ sDatePPH }}/{{ eDatePPH }}">Division</a></li>
+    <li><a class="dropdown-item" href="/packagesPerHour/region/{{ sDatePPH }}/{{ eDatePPH }}">Region</a></li>
+    <li><a class="dropdown-item" href="/packagesPerHour/district/{{ sDatePPH }}/{{ eDatePPH }}">District</a></li>
+    <li><a class="dropdown-item" href="/packagesPerHour/location/{{ sDatePPH }}/{{ eDatePPH }}">Location</a></li>
+  </ul>
+  <button type="button" class="btn btn-secondary dropdown-toggle rounded" data-bs-toggle="dropdown" aria-expanded="false">
+    Option
+  </button>
+  <ul class="dropdown-menu rounded">
+    <li><a class="dropdown-item" href="/packagesPerHour/location/all/{{ sDatePPH }}/{{ eDatePPH }}">All</a></li>
+    {% for option in level2List %}
+    <li><a class="dropdown-item" href="/packagesPerHour/{{ level1 }}/{{ option }}/{{ sDatePPH }}/{{ eDatePPH }}">{{ option }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+    <h4>Drill-down:</h4>
+    <div class="input-group mb-3">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Select</button>
+
+        <ol class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">On-Time Status</a></li>
+            <li><a class="dropdown-item" href="#">Delay Minutes</a></li>
+            <li><a class="dropdown-item" href="#">Early Arrival Minutes</a></li>
+        </ol>
+
+        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Vehicle Type</th>
+                <th scope="col">Truck/Flight Number</th>
+                <th scope="col">Status/minutes</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Cargo Plane</td>
+                <td>112</td>
+                <td>Delayed</td>
+            </tr>
+
+            <tr>
+                <th scope="row">2</th>
+                <td>Semi-Truck</td>
+                <td>044</td>
+                <td>On Time</td>
+            </tr>
+
+            <tr>
+                <th scope="row">3</th>
+                <td colspan="2"></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">4</th>
+                <td colspan="2"></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">5</th>
+                <td colspan="2"></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">6</th>
+                <td colspan="2"></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
