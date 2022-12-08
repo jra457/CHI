@@ -1,0 +1,12 @@
+{% extends 'opMetrics/base.html' %}
+
+{% block content %}
+<h1>(packagesperhour_detail) Packages Per Hour:</h1>
+
+<p><strong>Location:</strong> <a href="{{ packagesperhour.location.get_absolute_url }}">{{ packagesperhour.location }}</a></p>
+<p><strong>PPH:</strong> {{ packagesperhour.pph }}</p>
+<p><strong>Date:</strong> {{ packagesperhour.date }}</p> 
+<p><strong>Entries:</strong> {{ packagesperhour.all_entries }}</p> 
+
+</div>
+{% endblock %}

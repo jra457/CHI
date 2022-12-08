@@ -1,0 +1,130 @@
+{% extends 'opMetrics/base.html' %}
+
+{% block content %}
+
+<center>
+  <h1>Packages Per Hour</h1>
+</center>
+<h1>Packages Per Hour</h1>
+<h4>Level:</h4>
+<div class="btn-group">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    Level
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Region</a></li>
+    <li><a class="dropdown-item" href="#">District</a></li>
+    <li><a class="dropdown-item" href="#">Location</a></li>
+    <li><a class="dropdown-item" href="#">Senior Manager</a></li>
+  </ul>
+</div><div class="btn-group">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    Option
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">District 1</a></li>
+    <li><a class="dropdown-item" href="#">District 2</a></li>
+    <li><a class="dropdown-item" href="#">District 3</a></li>
+    <li><a class="dropdown-item" href="#">District 4</a></li>
+  </ul>
+</div>
+<h4>Date Range:</h4>
+<div class="input-group mb-3">
+  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">From</button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Today</a></li>
+    <li><a class="dropdown-item" href="#">This Week</a></li>
+    <li><a class="dropdown-item" href="#">This Month</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">This Year</a></li>
+  </ul>
+  <input type="text" class="form-control" aria-label="Text input with dropdown button">
+</div>
+
+<div class="input-group mb-3">
+  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">To</button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Today</a></li>
+    <li><a class="dropdown-item" href="#">This Week</a></li>
+    <li><a class="dropdown-item" href="#">This Month</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">This Year</a></li>
+  </ul>
+  <input type="text" class="form-control" aria-label="Text input with dropdown button">
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Package Number</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Time</th>
+      <th scope="col">Status</th>
+      <th scope="col">Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for test in test_list %}
+    <tr>
+      <th scope="row">1</th>
+      <td>0000</td>
+      <td>Clown Statue</td>
+      <td>0:00</td>
+      <td>Delivered</td>
+      <td>Actual</td>
+    </tr>
+    {% endfor %}
+    <!-- <tr>
+      <th scope="row">2</th>
+      <td>0001</td>
+      <td>Cardboard Box</td>
+      <td>0:01</td>
+      <td>At Location</td>
+      <td>Planned</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td colspan="2"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">5</th>
+      <td colspan="2"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">6</th>
+      <td colspan="2"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">7</th>
+      <td colspan="2"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">8</th>
+      <td colspan="2"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">9</th>
+      <td colspan="2"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">10</th>
+      <td colspan="2"></td>
+      <td></td>
+    </tr> -->
+    
+  </tbody>
+</table>
+
+{% endblock %}

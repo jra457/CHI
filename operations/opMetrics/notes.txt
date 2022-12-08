@@ -1,0 +1,10 @@
+Open sqlite shell:
+$ sqlite3 db.sqlite3
+
+// Load csv file:
+sqlite> .mode csv
+sqlite> .import packages.csv opMetrics_packagesperhour
+
+// Delete rows in the data base:
+sqlite> DELETE FROM opMetrics_packagesperhour
+sqlite> WHERE location_id = #;

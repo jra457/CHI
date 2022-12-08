@@ -1,0 +1,41 @@
+{% extends 'opMetrics/base.html' %}
+
+{% block content %}
+
+  {% if results %}
+    <h1>Search Results:</h1>
+    {% for location in object_list %}
+
+      <ul>
+        <div class="card" style="width: 18rem;">
+          <h5 class="card-header">{{ location.location }}</h5>
+          <div class="card-body">
+            <h5 class="card-title">{{ location.district.region.division }}</h5>
+            <p class="card-text">
+              <ul class="list-unstyled">
+                <li>Region: {{  location.district.region }}</li>
+                <li>District: {{ location.district }}</li>
+                <li>State: {{ location.state }}</li>
+                <li>Senior Manager: {{ location.senior_Manager }}</li>
+                <li>Packages/Hour {{ location.get_pph.date }}:
+                  <ul>
+                    <li>Total: {{ location.get_pph.sum }}</li>
+                    <li>Average: {{ location.get_pph.avg }}</li>
+                  </ul>
+                </li>
+              </ul> 
+            </p>
+            <a href="#" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </ul>
+      <br/>
+    {% endfor %}
+
+  {% else %}
+
+  <h1>No results for {{ query }}</h1>
+
+  {% endif %}
+
+{% endblock %}
