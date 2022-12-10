@@ -28,53 +28,60 @@
   </div>
   <!-- Title -->
 
+<!-- Form Filter -->
+<form role="filter" action="/packagesPerHour/{{ level1 }}/{{ level2 }}/{{ sDatePPH }}/{{ eDatePPH }}/" method="post">
+  {% csrf_token %}
+
   <!-- Level Selection -->
-  <h4>Level:</h4>
-  <div class="btn-group gap-2">
-
+  <div class="row mb-3">
+    <h4>Level:</h4>
     <!-- Select Level 1 -->
-    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle rounded" data-bs-toggle="dropdown" aria-expanded="false">Level </button>
-    <ul class="dropdown-menu rounded">
-      <li><a class="dropdown-item" href="/packagesPerHour/company/{{ sDatePPH }}/{{ eDatePPH }}">Company</a></li>
-      <li><a class="dropdown-item" href="/packagesPerHour/division/{{ sDatePPH }}/{{ eDatePPH }}">Division</a></li>
-      <li><a class="dropdown-item" href="/packagesPerHour/region/{{ sDatePPH }}/{{ eDatePPH }}">Region</a></li>
-      <li><a class="dropdown-item" href="/packagesPerHour/district/{{ sDatePPH }}/{{ eDatePPH }}">District</a></li>
-      <li><a class="dropdown-item" href="/packagesPerHour/location/{{ sDatePPH }}/{{ eDatePPH }}">Location</a></li>
-    </ul>
+    <label class="visually-hidden" for="autoSizingInputGroup">level1</label>
+    <div class="input-group btn-sm mb-3" style="width: 250px;">
+      <div class="input-group-text btn-sm mb-auto">Level 1:</div>
+      <select class="selectPicker form-select form-select-sm mb-auto" name="level1">
+        <option value="{{ level1 }}" selected>{{ level1 }}</option>
+        <option value="company">Company</option>
+        <option value="division">Division</option>
+        <option value="region">Region</option>
+        <option value="district">District</option>
+        <option value="location">Location</option>
+      </select>
+    </div>
     <!-- Select Level 1 -->
-
+  
     <!-- Select Level 2 -->
-    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle rounded" data-bs-toggle="dropdown" aria-expanded="false"> Option </button>
-    <ul class="dropdown-menu rounded">
-      <li><a class="dropdown-item" href="/packagesPerHour/location/all/{{ sDatePPH }}/{{ eDatePPH }}">All</a></li>
-      {% for option in level2List %}
-      <li><a class="dropdown-item" href="/packagesPerHour/{{ level1 }}/{{ option }}/{{ sDatePPH }}/{{ eDatePPH }}">{{ option }}</a></li>
-      {% endfor %}
-    </ul>
+    <label class="visually-hidden" for="autoSizingInputGroup">filter2</label>
+    <div class="input-group btn-sm mb-3" style="width: 250px;">
+      <div class="input-group-text btn-sm mb-auto">Level 2:</div>
+      <select class="form-select form-select-sm mb-auto">
+        <option selected>{{ level2 }}</option>
+        <option value="all">All</option>
+        {% for option in level2List %}
+        <option value="2">{{ option }}</option>
+        {% endfor %}
+      </select>
+    </div>
     <!-- Select Level 2 -->
 
   </div>
-<!-- Level Selection -->
+  <!-- Level Selection -->
 
-<!-- Date Selection -->
-  <h4>Date Range:</h4>
-
-  <form class="btn-group gap-2" role="search" action="/packagesPerHour/{{ level1 }}/{{ level2 }}/{{ sDatePPH }}/{{ eDatePPH }}/" method="post">
-    {% csrf_token %}
+  <!-- Date Selection -->
+  <div class="row mb-3">
+    <h4>Date Range:</h4>
     <!-- Select Start Date -->
-    <div class="input-group btn-sm input-group mb-3" style="width: 250px;">
-      <div class="input-group-prepend">
-        <span class="input-group-text text-center btn-sm" id="eDatePPHLabel">Start Date:</span>
-      </div>
+    <label class="visually-hidden" for="autoSizingInputGroup">startDate</label>
+    <div class="input-group btn-sm mb-3" style="width: 250px;">
+      <div class="input-group-text btn-sm mb-auto">Start Date:</div>
       <input class="form-control btn-sm" name="sDatePPH" type="date" value="{{ sDatePPH }}" placeholder="{{ sDatePPH }}">
     </div>
     <!-- Select Start Date -->
 
     <!-- Select End Date -->
-    <div class="input-group btn-sm input-group mb-3" style="width: 250px;">
-      <div class="input-group-prepend">
-        <span class="input-group-text text-center btn-sm" id="eDatePPHLabel">End Date:&nbsp;&nbsp;</span>
-      </div>
+    <label class="visually-hidden" for="autoSizingInputGroup">startDate</label>
+    <div class="input-group btn-sm mb-3" style="width: 250px;">
+      <div class="input-group-text btn-sm mb-auto">End Date:</div>
       <input class="form-control btn-sm" name="eDatePPH" type="date" value="{{ eDatePPH }}" placeholder="{{ eDatePPH }}">
     </div>
     <!-- Select End Date -->
@@ -82,9 +89,39 @@
     <!-- Submit -->
     <button class="btn btn-primary rounded btn-sm mt-1 mb-auto" style="width: 100px;" type="submit">Submit</button>
     <!-- Submit -->
+  
+  </div>
+  <!-- Date Selection -->
 
-  </form>
-<!-- Date Selection -->
+</form>
+<!-- Form Filter -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Table -->
   <table class="table table-hover">
