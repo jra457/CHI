@@ -1,0 +1,73 @@
+<style>
+.searchBtn {
+  background-color: #4D148C;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.searchBtn:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.searchBar {
+  background-color: #4D148C;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.searchBar:hover {
+  background-color: #4D148C;
+  color: #ffffff;
+}
+
+.searchBar:active {
+  background-color: #4d148c;
+  box-shadow: #4d148c;
+  color: #000000;
+}
+.searchBar:focus {
+  background-color: #4d148c;
+  border-color:#ffffff;
+  color: #ffffff;
+  -webkit-box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0), 0 0 8px rgba(255, 255, 255, 0);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0), 0 0 8px rgba(255, 255, 255, 0);
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4D148C;">
+  <div class="container-fluid">
+          <!-- Navbar brand -->
+    <a class="navbar-brand mt-2 mt-lg-0" href="{% url 'home' %}">
+      <img
+        src="https://www.fedex.com/content/dam/fedex-com/logos/logo.png"
+        height="20"
+        alt="Fedex Logo"
+        loading="lazy"
+      />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" style="color: white" href="/packagesPerHour/company/{{ today }}/{{ today }}">Packages Per Hour</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white" href="{% url 'dex' %}">Delivery Exceptions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white" href="{% url 'vas' %}">Volume Availability Status</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white" href="{% url 'login' %}">Login</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search" action="{% url 'search' %}" method="get">
+        <input class="form-control searchBar me-2" name=q type="search" placeholder="Search" aria-label="Search">
+        <button class="btn searchBtn" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
