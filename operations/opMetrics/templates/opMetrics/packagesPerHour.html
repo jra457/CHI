@@ -1,11 +1,12 @@
 {% extends 'opMetrics/base.html' %}
 
 {% block content %}
-
 <!-- Static CSS Files -->
 {% load static %}
 <link href="{% static 'css/dropdowns.css' %}" rel="stylesheet" >
 <!-- Static CSS Files -->
+
+
 
 <!-- SVG Files -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -19,14 +20,17 @@
 </svg>
 <!-- SVG Files -->
 
-<!-- Packages Per Hour Content -->
 
+
+<!-- Packages Per Hour Content -->
 <!-- Title -->
 <div class="container-fluid pb-5" name="packagesperhour">
   <div class="d-flex px-5">
     <h2 class="pb-2 border-bottom" style="color:#000000;">Packages Per Hour</h2>
-  </div>
-  <!-- Title -->
+</div>
+<!-- Title -->
+
+
 
 <!-- Form Filter -->
 <form role="filter" action="/packagesPerHour/{{ level1 }}/{{ level2 }}/{{ sDatePPH }}/{{ eDatePPH }}/" method="post">
@@ -98,36 +102,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Table -->
   <table class="table table-hover">
-    <thead>
 
-      <!-- Column Titles -->
+    <!-- Column Titles -->
+    <thead>
       <tr>
         <th scope="col">Row #</th>
         <th scope="col">UUID</th>
@@ -235,5 +214,4 @@
 
 </script>
 <!-- Row Number Script -->
-
 {% endblock %}
